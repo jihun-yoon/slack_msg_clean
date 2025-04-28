@@ -27,7 +27,7 @@ app = App(token=SLACK_BOT_TOKEN, signing_secret=SLACK_SIGNING_SECRET)
 user_client = WebClient(token=SLACK_USER_TOKEN)
 
 
-@app.command("/delete_dm_messages")
+@app.command("/delete_msg")
 def delete_my_messages(ack, body, client):
     ack()
     user_id = body.get("user_id")
