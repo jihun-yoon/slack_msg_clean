@@ -1,5 +1,6 @@
 import os
 import time
+import datetime
 import logging
 import sys
 from slack_bolt import App
@@ -48,7 +49,8 @@ def delete_my_messages(ack, body, client):
                     try:
                         user_client.chat_delete(channel=channel_id, ts=ts)
                         deleted += 1
-                        logger.info(f"Deleted ts={ts}")
+                        logger.info(f"Deleted ts={human_ts(ts)}")
+
                         break
                     except SlackApiError as e:
                         if e.response.get("error") == "ratelimited":
@@ -67,7 +69,8 @@ def delete_my_messages(ack, body, client):
         logger.error(e.response.get("error"))
         post_feedback(client, channel_id, user_id, f"Error: {e.response.get('error')}")
         return
-    post_feedback(client, channel_id, user_id, f"Deleted {deleted} messages.")
+    if not channel_id.startswith("D"):
+        post_feedback(client, channel_id, user_id, f"Deleted {deleted} messages.")
 
 
 def post_feedback(client, channel, user, text):
@@ -76,6 +79,13 @@ def post_feedback(client, channel, user, text):
     except SlackApiError as e:
         if e.response.get("error") == "channel_not_found":
             client.chat_postMessage(channel=channel, text=text)
+
+
+def human_ts(ts_str: str, fmt: str = "%Y-%m-%d %H:%M:%S") -> str:
+    ts_float = float(ts_str)
+    # Use .fromtimestamp for local time, or .utcfromtimestamp for UTC
+    dt = datetime.datetime.fromtimestamp(ts_float)
+    return dt.strftime(fmt)
 
 
 def main():
