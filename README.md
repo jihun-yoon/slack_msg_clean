@@ -44,13 +44,36 @@ export SLACK_SIGNING_SECRET='your-signing-secret'
 export SLACK_BOT_TOKEN='xoxb-your-bot-token'
 export SLACK_USER_TOKEN='xoxp-your-user-token'
 export SLACK_APP_TOKEN='xapp-your-app-token'
+```
 
 ## Installation
 ```bash
-pip install git_https://github.com/jihun-yoon/slack_msg_clean.git
+pip install git+https://github.com/jihun-yoon/slack_msg_clean.git
 ```
 
+### Console-script Configuration
+
+#### 1. Conda
+
+A. Installation verification
+```bash
+# Check the activated conda env
+conda info --envs
+
+# Check if the script is installed in bin
+ls "$CONDA_PREFIX/bin/slack-msg-clean"
+```
+
+B. PATH setting
+Add the following line in `~/.zshrc` or `~/.bashrc`
+```bash
+export PATH="CONDA_PREFIX/bin:$PATH"
+```
+- After activating conda environment, `$CONDA_PREFIX` will automatically set.
+- After saving the script, `source ~/.zshrc` or `source ~/.bashrc`.
+
 ## Usage
+
 Start the bot with one of thte following:
 ```bash
 # Using console script entry point
