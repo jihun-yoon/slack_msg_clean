@@ -30,7 +30,7 @@ A Python package to delete your messages in any Slack channel or direct message.
    - Copy the **Bot User OAuth Token** (`xoxb-…`) and the **OAuth Access Token** (`xoxp-…`).
 5. **Create a Slash Command**
    - In **Features > Slash Commands**, click **Create New Command**.
-   - Command: `/delete_dm_messages`
+   - Command: `/delete_msg`
    - Request URL: (Socket Mode ignores this, you may enter a placeholder.)
    - Short description: `Delete my messages in the current channel or DM.`
    - Save and **Reinstall to Workspace** to apply.
