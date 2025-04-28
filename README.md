@@ -48,7 +48,9 @@ export SLACK_APP_TOKEN='xapp-your-app-token'
 
 ## Installation
 ```bash
-pip install git+https://github.com/jihun-yoon/slack_msg_clean.git
+git clone https://github.com/jihun-yoon/slack_msg_clean.git
+cd slack_msg_clean
+pip install -e .
 ```
 
 ### Console-script Configuration
