@@ -119,9 +119,12 @@ def delete_my_messages(ack, body, client):
                         break
                 time.sleep(0.1)
 
-            if not resp.get("has_more"):
+            next_cursor = resp.get("response_metadata", {}).get("next_cursor")
+            logger.info(f"Next cursor: {next_cursor!r}")
+            if not next_cursor:
+                # no valid cursor → end paging
                 break
-            cursor = resp["response_metadata"].get("next_cursor")
+            cursor = next_cursor
 
         logger.info(f"Total deleted={deleted}")
     except SlackApiError as e:
