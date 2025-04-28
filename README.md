@@ -79,15 +79,15 @@ export PATH="CONDA_PREFIX/bin:$PATH"
 Start the bot with one of thte following:
 ```bash
 # Using console script entry point
-slack-dm-clean
+slack-msg-clean
 
 # Or directly with Python
-python -m slack_dm_clean.app
+python -m slack_msg_clean.app
 ```
 
 Then, in any Slack channel or DM, type:
 ```bash
-/delete_dm_messages
+/delete_msg
 ```
 
 Your messages in that channel or DM will be deleted, and processing logs will appear in your terminal.
